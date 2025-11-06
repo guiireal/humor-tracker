@@ -1,13 +1,14 @@
-import { NavigationContainer, RouteProp } from "@react-navigation/native";
+import { NavigationContainer, type RouteProp } from "@react-navigation/native";
 import {
   createNativeStackNavigator,
-  NativeStackNavigationProp,
+  type NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
+import { SafeAreaView } from "react-native-safe-area-context";
 import DetailScreen from "./screens/Detail";
 import HomeScreen from "./screens/Home";
 import SetUserNameScreen from "./screens/SetUserName";
 
-export type RootStackParamList = {
+export type RootStackRouteProps = {
   home: undefined;
   detail: {
     rate: number;
@@ -15,23 +16,42 @@ export type RootStackParamList = {
   setUserName: undefined;
 };
 
-export type NavigationStackScreenProps =
-  NativeStackNavigationProp<RootStackParamList>;
+export type NavigationStackProps =
+  NativeStackNavigationProp<RootStackRouteProps>;
 
-export type RouteProps<T extends keyof RootStackParamList> = RouteProp<
-  RootStackParamList,
+export type RouteProps<T extends keyof RootStackRouteProps> = RouteProp<
+  RootStackRouteProps,
   T
 >;
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackRouteProps>();
 
 export function AppRoutes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="home"
+        screenOptions={{ headerShown: false }}
+        screenLayout={({ children }) => <SafeAreaView>{children}</SafeAreaView>}
+      >
         <Stack.Screen name="home" component={HomeScreen} />
-        <Stack.Screen name="detail" component={DetailScreen} />
-        <Stack.Screen name="setUserName" component={SetUserNameScreen} />
+        <Stack.Group
+          screenOptions={{
+            presentation: "formSheet",
+            sheetCornerRadius: 24,
+          }}
+        >
+          <Stack.Screen
+            name="detail"
+            component={DetailScreen}
+            options={{ sheetAllowedDetents: [0.8, 0.95] }}
+          />
+          <Stack.Screen
+            name="setUserName"
+            component={SetUserNameScreen}
+            options={{ sheetAllowedDetents: [0.4, 0.6] }}
+          />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
