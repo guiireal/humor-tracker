@@ -16,10 +16,10 @@ export const theme = {
       subtitle: 20,
       body: 14,
     },
-    familiy: {
-      regular: "",
-      bold: "",
-      italic: "",
+    family: {
+      regular: "Inter_400Regular",
+      bold: "Inter_800ExtraBold",
+      italic: "Inter_400Regular_Italic",
     },
   },
   shadow: {
