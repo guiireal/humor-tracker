@@ -8,9 +8,9 @@ type HeaderProps = {
 export function Header({ name }: HeaderProps) {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerText}>Olá,</Text>
+      <Text style={styles.headerText}>Olá!</Text>
       <Text style={styles.headerBoldText}>
-        {name ? `${name}!` : "seu nome é?"}
+        {name ? `${name}!` : "Seu nome é?"}
       </Text>
     </View>
   );
@@ -24,7 +24,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 16,
   },
-  headerText: { fontSize: theme.font.size.title },
+  headerText: {
+    fontSize: theme.font.size.title,
+    fontFamily: theme.font.family.regular,
+  },
   headerBoldText: {
     color: theme.color.primary,
     fontFamily: theme.font.family.bold,
