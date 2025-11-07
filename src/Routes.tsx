@@ -38,7 +38,11 @@ export function AppRoutes() {
             backgroundColor: theme.color.background,
           },
         }}
-        screenLayout={({ children }) => <SafeAreaView>{children}</SafeAreaView>}
+        screenLayout={({ children }) => (
+          <SafeAreaView style={{ flex: 1 }} edges={["top", "left", "right"]}>
+            {children}
+          </SafeAreaView>
+        )}
       >
         <Stack.Screen name="home" component={HomeScreen} />
         <Stack.Group

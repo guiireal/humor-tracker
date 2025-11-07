@@ -19,9 +19,13 @@ export default function App() {
   });
 
   useEffect(() => {
-    if (fontLoaded || error) {
-      SplashScreen.hideAsync();
+    async function hideSplashScreen() {
+      if (fontLoaded || error) {
+        await SplashScreen.hideAsync();
+      }
     }
+
+    hideSplashScreen();
   }, [fontLoaded]);
 
   if (!fontLoaded && error) {

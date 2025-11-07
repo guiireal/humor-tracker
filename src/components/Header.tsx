@@ -8,9 +8,9 @@ type HeaderProps = {
 export function Header({ name }: HeaderProps) {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerText}>Olá!</Text>
+      <Text style={styles.headerText}>Olá !</Text>
       <Text style={styles.headerBoldText}>
-        {name ? `${name}!` : "Seu nome é?"}
+        {name ? `${name}!` : "Seu nome é ?"}
       </Text>
     </View>
   );
